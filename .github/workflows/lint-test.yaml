@@ -29,7 +29,7 @@ jobs:
         working-directory: ${{ env.working-directory }}
         id: list-changed
         run: |
-          pwd
+          echo $PWD
           changed=$(ct list-changed --target-branch develop --chart-dirs charts )
           if [[ -n "$changed" ]]; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
