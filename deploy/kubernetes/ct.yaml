@@ -1,7 +1,8 @@
 # See https://github.com/helm/chart-testing#configuration
 remote: origin
+target-branch: develop
 chart-dirs:
-  - charts
+  - deploy
 chart-repos:
   - bitnami=https://charts.bitnami.com/bitnami
 helm-extra-args: --timeout 600s
