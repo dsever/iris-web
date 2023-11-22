@@ -29,8 +29,7 @@ jobs:
         working-directory: ${{ env.working-directory }}
         id: list-changed
         run: |
-          echo $PWD
-          changed=$(ct list-changed --target-branch develop --chart-dirs charts )
+          changed=$(ct list-changed --target-branch develop --chart-dirs $PWD/charts )
           if [[ -n "$changed" ]]; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
@@ -39,4 +38,4 @@ jobs:
         id: run-linting
         working-directory: ${{ env.working-directory }}
         if: steps.list-changed.outputs.changed == 'true'
-        run: ct lint --target-branch develop --chart-dirs charts
+        run: ct lint --target-branch develop --chart-dirs $PWD/charts
