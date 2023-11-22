@@ -30,6 +30,7 @@ jobs:
         id: list-changed
         run: |
           ct list-changed --config ct.yaml
+          ct list-changed --config ct.yaml --print-config
           changed=$(ct list-changed --config ct.yaml  )
           if [[ -n "$changed" ]]; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
