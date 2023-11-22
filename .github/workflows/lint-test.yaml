@@ -40,5 +40,5 @@ jobs:
       - name: Run chart-testing (lint)
         id: run-linting
         working-directory: ${{ env.working-directory }}
-        if: steps.list-changed.outputs.changed == 'true'
+#        if: steps.list-changed.outputs.changed == 'true'
         run: ct lint --all --config ct.yaml
