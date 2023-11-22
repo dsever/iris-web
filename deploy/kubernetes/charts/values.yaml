@@ -149,7 +149,7 @@ ingress:
     - host: <host_name>
       paths:
         - path: /
-          pathType: Prefix
+          pathType: Prefix  
           serviceName: iriswebapp-app
           servicePort: 80
   tls:
