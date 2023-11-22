@@ -29,8 +29,8 @@ jobs:
       - name: Configure Helm repos
         run: |-
              helm repo add bitnami https://charts.bitnami.com/bitnami
-             helm dependency list ./deploy/kubernetes
-             helm dependency update ./deploy/kubernetes
+             helm dependency list ./deploy/kubernetes/charts
+             helm dependency update ./deploy/kubernetes/charts
 
       - name: Set up chart-testing
         uses: helm/chart-testing-action@v2.6.1
