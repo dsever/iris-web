@@ -29,7 +29,7 @@ jobs:
         working-directory: ${{ env.working-directory }}
         id: list-changed
         run: |
-          changed=$(ct list-changed -d --config ct.yaml  )
+          changed=$(ct list-changed --config ct.yaml  )
           if [[ -n "$changed" ]]; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
