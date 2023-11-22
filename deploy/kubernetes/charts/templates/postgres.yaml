@@ -54,9 +54,8 @@ spec:
           imagePullPolicy: "{{ .Values.postgres.imagePullPolicy }}"
 
           env:
-          - name: POSTGRES_DB  # Setting Database name 
+          - name: POSTGRES_DB  # Setting Database name
             value: {{ .Values.postgres.POSTGRES_DB | quote }}
-
           - name: POSTGRES_USER  # Setting Database username
             value: {{ .Values.postgres.POSTGRES_ADMIN_USER | quote }}
 
