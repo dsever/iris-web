@@ -2,4 +2,4 @@
 # See https://github.com/helm/chart-testing#configuration
 remote: origin
 chart-dirs:
-  - ./deploy/kubernetes/charts
+  - charts

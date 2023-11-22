@@ -47,7 +47,7 @@ jobs:
       - name: Run chart-testing (list-changed)
         id: list-changed
         run: |
-          pwd
+          cd deploy/kubernetes
           changed=$(ct list-changed --config ct.yaml --target-branch ${{ env.ct-branch}})
           if [[ -n "$changed" ]]; then
             echo "changed=true" >> $GITHUB_ENV
