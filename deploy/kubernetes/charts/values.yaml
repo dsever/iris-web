@@ -19,7 +19,7 @@ rabbitmq:
    ## @param rabbitmq.replicaCount ReplicaCount for rabbitmq
    ##
    replicaCount: 1
-   
+
 
 ## @section PostgreSQL Configuration
 ##
@@ -41,7 +41,7 @@ postgres:
    ## @param postgres.replicaCount PostgreSQL ReplicaCount
    ##
    replicaCount: 1
-   
+
    ## @param postgres.service PostgreSQL Service
    ##
    service:
@@ -55,7 +55,6 @@ postgres:
    POSTGRES_ADMIN_PASSWORD: postgres
    POSTGRES_DB: iris_db
    POSTGRES_PORT: 5432
-
 
 ## @section Iris Frontend Configuration
 ##
@@ -82,12 +81,12 @@ irisapp:
    ## @param irisapp.service Iris Frontend Service
    ##
    service:
-     port: 80 
+     port: 80
      targetPort: 8000
-    
+
    ## @param irisapp.type Iris Frontend Service type
    ##
-   type: ClusterIP  
+   type: ClusterIP
 
    ## @param  Iris Frontend Environments
    ##
@@ -105,7 +104,7 @@ irisapp:
 ##
 irisworker:
    ## @param irisworker.app Iris Backend App
-   ##    
+   ##
    app: iriswebapp-worker
    ## @param irisworker.name Iris Backend Name
    ##
