@@ -26,6 +26,7 @@ jobs:
       - name: Indentify target branch
         id: ct-branch-target
         run: |
+          printenv
           if [ ! -z ${GITHUB_BASE_REF} ]; then
             echo "ct-branch=${GITHUB_BASE_REF}" >> $GITHUB_OUTPUT
           else
