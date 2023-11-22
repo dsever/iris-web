@@ -1,0 +1,50 @@
+name: Lint and Test Charts
+
+on: pull_request
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    env:
+      working-directory: deploy/kubernetes
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v3
+        with:
+          version: v3.12.1
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          check-latest: true
+
+      - name: Indentify target branch
+        id: ct-branch-target
+        run: |
+          if [ ! -z ${GITHUB_BASE_REF} ]; then
+            echo "ct-branch=${GITHUB_BASE_REF}" >> $GITHUB_OUTPUT
+          else
+            echo "ct-branch=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Set up chart-testing
+        uses: helm/chart-testing-action@v2.6.0
+
+      - name: Run chart-testing (list-changed)
+        id: list-changed
+        working-directyory: ${{ env.working-directory }}
+        run: |
+          changed=$(ct list-changed --target-branch ${{ steps.ct-branch-target.outputs.ct-branch }})
+          if [[ -n "$changed" ]]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run chart-testing (lint)
+        working-directyory: ${{ env.working-directory }}
+        if: steps.list-changed.outputs.changed == 'true'
+        run: ct lint --target-branch ${{ github.event.repository.default_branch }}
