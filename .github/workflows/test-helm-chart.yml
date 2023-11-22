@@ -51,3 +51,7 @@ jobs:
           if [[ -n "$changed" ]]; then
             echo "changed=true" >> $GITHUB_ENV
           fi
+
+      - name: Run chart-testing (lint)
+        run: ct lint --config ct.yaml --target-branch ${{ env.ct-branch }}
+        if: ${{ env.changed == 'true' }}  
