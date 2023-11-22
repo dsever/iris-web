@@ -39,7 +39,7 @@ const selectsConfig = {
         name: 'customer_name'
     },
     alert_owner_id: {
-        url: '/manage/users/list',
+        url: '/manage/users/restricted/list',
         id: 'user_id',
         name: 'user_name'
     },
@@ -812,6 +812,8 @@ function alertResolutionToARC(resolution) {
             return `<span class="badge alert-bade-status badge-pill badge-warning mr-2">True Positive without impact</span>`
         case 'False Positive':
             return `<span class="badge alert-bade-status badge-pill badge-success mr-2">False Positive</span>`
+        case 'Unknown':
+            return `<span class="badge alert-bade-status badge-pill badge-light mr-2">Unknown resolution</span>`
     }
 }
 
@@ -1727,7 +1729,7 @@ function changeStatusAlert(alert_id, status_name) {
 
 async function changeAlertOwner(alertId) {
   // Fetch the user list from the endpoint
-  const usersReq = await get_request_api('/manage/users/list');
+  const usersReq = await get_request_api('/manage/users/restricted/list');
 
   if (!notify_auto_api(usersReq, true)) { return; };
 
@@ -1769,7 +1771,7 @@ async function changeBatchAlertOwner(alertId) {
     }
 
       // Fetch the user list from the endpoint
-      const usersReq = await get_request_api('/manage/users/list');
+      const usersReq = await get_request_api('/manage/users/restricted/list');
 
       if (!notify_auto_api(usersReq, true)) { return; };
 
