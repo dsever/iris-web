@@ -48,7 +48,7 @@ jobs:
         id: list-changed
         run: |
           cd deploy/kubernetes/charts
-          changed=$(ct list-changed --config ../ct.yaml --target-branch ${{ env.ct-branch}})
+          changed=$(ct list-changed --config ../ct.yaml)
           if [[ -n "$changed" ]]; then
             echo "changed=true" >> $GITHUB_ENV
           fi
@@ -56,6 +56,6 @@ jobs:
       - name: Run chart-testing (lint)
         run: |
           cd deploy/kubernetes/charts
-          ct lint --config ../ct.yaml --target-branch ${{ env.ct-branch }}
+          ct lint --config ../ct.yaml
 
 #        if: ${{ env.changed == 'true' }}
